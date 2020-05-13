@@ -3,6 +3,9 @@
 
 using namespace std;
 
+
+
+
 //classe AnalogSensorTemperature
 AnalogSensorTemperature::AnalogSensorTemperature(int d,int  t):Device(),val(t),temps(d){
   alea=1;
@@ -49,5 +52,18 @@ void I2CActuatorScreen::run(){
 
 
 
+//RAJOUT DE LA CLASSE AnalogSensorLuminosity
+AnalogSensorLuminosity::AnalogSensorLuminosity(int _temps,int _val, float _dist):Device(),val(_val),temps(_temps), dist(_dist){
+    alea=1;
+}
+
+void AnalogSensorLuminosity::run(){
+    while(1){
+        alea=1-alea;
+        if(ptrmem!=NULL)
+            *ptrmem=(val+alea)/(dist*0.1);
+        sleep(temps);
+    }
+}
 
 
